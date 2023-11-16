@@ -7,6 +7,7 @@ public class CrashEnemyController : MonoBehaviour
     private bool waiting = false;
     public float speed;
     private int count;
+    public PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,7 @@ public class CrashEnemyController : MonoBehaviour
                 transform.Rotate(0f, 0f, 180f);
                 count++;
             }
-            if (count == 2)
+            if (count == 1)
             {
                 StartCoroutine(Wait());
             }
@@ -55,5 +56,15 @@ public class CrashEnemyController : MonoBehaviour
         waiting = false;
         Debug.Log("wait ended");
         count = 0;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Laser")
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+            playerController.score += 10;
+        }
     }
 }
