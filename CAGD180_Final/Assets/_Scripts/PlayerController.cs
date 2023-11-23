@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public int lives;
     public GameObject spawnPoint;
     private Vector3 spawnPosition;
-    private bool invincible;
+    public bool invincible;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(Wait());
             }
         }
-      
+
     }
 
     private IEnumerator Wait()
@@ -66,36 +66,33 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         wait = false;
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (invincible == false)
         {
-            if (collision.gameObject.tag == "CrashEnemy")
+            if (other.gameObject.tag == "CrashEnemy")
             {
+                invincible = true;
                 Respawn();
             }
         }
-        
-            
-        
-      
+
+
+
+
     }
 
     private void Respawn()
     {
         transform.position = spawnPosition;
-        lives-= 1;
+        lives -= 1;
         StartCoroutine(Invincibility());
     }
-    private IEnumerator Invincibility(float interval = 5f)
+    private IEnumerator Invincibility()
     {
-        invincible = true;
-        for (int count = 0; count == 3; count++)
-        {
-            gameObject.SetActive(!gameObject.activeSelf);
-            yield return new WaitForSeconds(interval);
-        }
-       
+        
+        yield return new WaitForSeconds(5f);
+
         invincible = false;
     }
 

@@ -5,47 +5,86 @@ using UnityEngine;
 public class CrashEnemyController : MonoBehaviour
 {
     private bool waiting = false;
+    private bool attacking = false;
+    private bool goingRight;
     public float speed;
     private int count;
+    private int bounceTimes;
     public PlayerController playerController;
+    public GameObject rightPoint;
+    public GameObject leftPoint;
+    private Vector3 rightPos;
+    private Vector3 leftPos;
     // Start is called before the first frame update
     void Start()
     {
-
+        rightPos = rightPoint.transform.position;
+        leftPos = leftPoint.transform.position;
+        StartCoroutine(Wait());
     }
 
     // Update is called once per frame
     void Update()
-    {
-       
-        
+    {      
         Attack();
+        if (attacking == false && bounceTimes <= 4)
+        {
+            OnScreen();
+        }
+        if (bounceTimes >= 4)
+        {
+            transform.position += -transform.right * speed * Time.deltaTime;
+            if (transform.position.x < -8)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
+    private void OnScreen()
+    {
+        if (transform.position.x >= rightPos.x)
+        {
+            goingRight = false;
+            bounceTimes++;
+        }
+        
+        if (transform .position.x <= leftPos.x)
+        {
+            goingRight = true;
+            bounceTimes++;
+        }
+        if (goingRight == true)
+        {
+            transform.position += transform.right * speed * Time.deltaTime;
+        }
+        else
+        {
+            transform.position += -transform.right * speed * Time.deltaTime;
+        }
+    }
 
     private void Attack()
     {
         if (waiting == false)
         {
-
-
+            attacking = true;
             transform.position += -transform.up * speed * Time.deltaTime;
             if (transform.position.y <= -5)
             {
                 transform.Rotate(0f, 0f, 180f);
 
             }
-            if (transform.position.y >= 6)
+            if (transform.position.y >= 4.25f)
             {
                 transform.Rotate(0f, 0f, 180f);
                 count++;
+                attacking = false;
             }
             if (count == 1)
             {
                 StartCoroutine(Wait());
             }
-
-
         }
     }
     private IEnumerator Wait()

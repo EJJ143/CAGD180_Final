@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 168219226}
   m_Layer: 0
   m_Name: CrashEnemy (2)
-  m_TagString: Untagged
+  m_TagString: CrashEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,7 +382,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 499686480}
   m_Layer: 0
   m_Name: CrashEnemy (3)
-  m_TagString: Untagged
+  m_TagString: CrashEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -726,7 +726,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -887,6 +887,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1354715596}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &553996118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553996119}
+  m_Layer: 0
+  m_Name: RightPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &553996119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553996118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &564011886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1205,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &661498814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661498815}
+  m_Layer: 0
+  m_Name: LeftPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &661498815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661498814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1497,8 +1559,8 @@ Transform:
   m_GameObject: {fileID: 1030423561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.298, y: 4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.2878, y: 4.0326, z: 0}
+  m_LocalScale: {x: 0.60873, y: 0.61459, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1873335390}
@@ -1521,6 +1583,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   playerController: {fileID: 1354715597}
+  rightPoint: {fileID: 553996118}
+  leftPoint: {fileID: 661498814}
 --- !u!54 &1030423564
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1845,8 +1909,9 @@ MonoBehaviour:
   speed: 3
   laser: {fileID: 7906145512832444832, guid: 1b3e1e9631351094e8e3127ce790c988, type: 3}
   score: 0
-  lives: 0
+  lives: 3
   spawnPoint: {fileID: 1879738668}
+  invincible: 0
 --- !u!54 &1354715598
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2098,7 +2163,7 @@ GameObject:
   - component: {fileID: 1847651982}
   m_Layer: 0
   m_Name: CrashEnemy (1)
-  m_TagString: Untagged
+  m_TagString: CrashEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2133,7 +2198,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2203,7 +2268,7 @@ GameObject:
   - component: {fileID: 1873335391}
   m_Layer: 0
   m_Name: CrashEnemy
-  m_TagString: Untagged
+  m_TagString: CrashEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2238,7 +2303,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2441,3 +2506,5 @@ SceneRoots:
   - {fileID: 1030423562}
   - {fileID: 564011890}
   - {fileID: 1879738669}
+  - {fileID: 553996119}
+  - {fileID: 661498815}
