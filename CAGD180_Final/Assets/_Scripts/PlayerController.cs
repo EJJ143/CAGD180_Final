@@ -14,10 +14,13 @@ public class PlayerController : MonoBehaviour
     public GameObject spawnPoint;
     private Vector3 spawnPosition;
     public bool invincible;
+    public CrashEnemyController crashEnemyController;
+    
     // Start is called before the first frame update
     void Start()
     {
         spawnPosition = spawnPoint.transform.position;
+        
     }
 
     // Update is called once per frame
@@ -25,6 +28,11 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Shoot();
+        if (crashEnemyController.hit == true)
+        {
+            score += 10;
+            crashEnemyController.hit = false;
+        }
     }
 
     private void Move()

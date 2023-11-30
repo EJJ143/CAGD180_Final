@@ -13,13 +13,16 @@ public class CrashEnemyController : MonoBehaviour
     public PlayerController playerController;
     public GameObject rightPoint;
     public GameObject leftPoint;
-    private Vector3 rightPos;
+    
+    public Vector3 rightPos;
     private Vector3 leftPos;
+    public bool hit = false;
     // Start is called before the first frame update
     void Start()
     {
         rightPos = rightPoint.transform.position;
         leftPos = leftPoint.transform.position;
+        
         StartCoroutine(Wait());
     }
 
@@ -43,25 +46,34 @@ public class CrashEnemyController : MonoBehaviour
 
     private void OnScreen()
     {
-        if (transform.position.x >= rightPos.x)
+        if (transform.position.x > 5)
         {
-            goingRight = false;
-            bounceTimes++;
-        }
-        
-        if (transform .position.x <= leftPos.x)
-        {
-            goingRight = true;
-            bounceTimes++;
-        }
-        if (goingRight == true)
-        {
-            transform.position += transform.right * speed * Time.deltaTime;
+            transform.position += -transform.right * speed * Time.deltaTime;
+           
         }
         else
         {
-            transform.position += -transform.right * speed * Time.deltaTime;
+            if (transform.position.x >= 5)
+            {
+                goingRight = false;
+                bounceTimes++;
+            }
+
+            if (transform.position.x <= -5)
+            {
+                goingRight = true;
+                bounceTimes++;
+            }
+            if (goingRight == true)
+            {
+                transform.position += transform.right * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position += -transform.right * speed * Time.deltaTime;
+            }
         }
+       
     }
 
     private void Attack()
@@ -103,7 +115,7 @@ public class CrashEnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(other.gameObject);
-            playerController.score += 10;
+            hit = true;
         }
     }
 }
