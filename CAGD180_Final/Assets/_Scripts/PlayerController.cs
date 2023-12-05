@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public GameObject laser;
+    public GameObject laser2;
     private bool wait;
+    private bool powerUp = false;
     public int score;
     public int lives;
     public GameObject spawnPoint;
@@ -61,9 +63,20 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                Instantiate(laser, transform.position, transform.rotation);
-                wait = true;
-                StartCoroutine(Wait());
+                if (powerUp == true)
+                {
+                    Instantiate(laser2, transform.position, transform.rotation);
+                    wait = true;
+                    StartCoroutine(Wait());
+                    
+                }
+                else
+                {
+                    Instantiate(laser, transform.position, transform.rotation);
+                    wait = true;
+                    StartCoroutine(Wait());
+                }
+                
             }
         }
 
@@ -83,6 +96,10 @@ public class PlayerController : MonoBehaviour
                 invincible = true;
                 Respawn();
             }
+        }
+        if (other.gameObject.tag == "Powerup")
+        {
+            powerUp = true;
         }
 
 
