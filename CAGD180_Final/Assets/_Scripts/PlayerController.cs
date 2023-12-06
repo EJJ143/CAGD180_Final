@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Powerup")
         {
             powerUp = true;
+            other.gameObject.SetActive(false);
         }
 
 
