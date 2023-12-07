@@ -30,11 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Shoot();
-        if (crashEnemyController.hit == true)
-        {
-            score += 10;
-            crashEnemyController.hit = false;
-        }
+        
     }
 
     private void Move()
@@ -91,7 +87,7 @@ public class PlayerController : MonoBehaviour
     {
         if (invincible == false)
         {
-            if (other.gameObject.tag == "CrashEnemy")
+            if (other.gameObject.tag == "CrashEnemy" && invincible == false)
             {
                 invincible = true;
                 Respawn();
@@ -102,7 +98,11 @@ public class PlayerController : MonoBehaviour
             powerUp = true;
             other.gameObject.SetActive(false);
         }
-
+        if (other.gameObject.tag == "EnemyLaser" && invincible == false)
+        {
+            invincible = true;
+            Respawn();
+        }
 
 
 

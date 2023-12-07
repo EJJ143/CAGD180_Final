@@ -15,10 +15,19 @@ public class LaserController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.up * speed * Time.deltaTime;
-        if (transform.position.y >= 10)
+       
+        if (transform.position.y >= 10 || transform.position.y <= -10)
         {
             Destroy(gameObject);
+        }
+
+        if (gameObject.tag == "EnemyLaser")
+        {
+            transform.position += Vector3.down * speed * Time.deltaTime;
+        }
+        else
+        {
+            transform.position += Vector3.up * speed * Time.deltaTime;
         }
     }
 }

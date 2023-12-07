@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -12,6 +13,7 @@ public class LaserEnemyController : MonoBehaviour
     private Vector3 temp;
 
     public bool goingRight = true;
+    public PlayerController playerController;
     public GameObject laserPrefab;
 
     public float laserSpawnRate = 0.5f;
@@ -59,6 +61,15 @@ public class LaserEnemyController : MonoBehaviour
     private void SetRandomDirectionSwitch()
     {
         dist = Random.Range(distMin, distMax);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Laser")
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+            playerController.score += 10;
+        }
     }
 
 }

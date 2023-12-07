@@ -16,7 +16,7 @@ public class CrashEnemyController : MonoBehaviour
     
     public Vector3 rightPos;
     private Vector3 leftPos;
-    public bool hit = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -115,7 +115,7 @@ public class CrashEnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(other.gameObject);
-            hit = true;
+            playerController.score += 5;
         }
     }
 }
