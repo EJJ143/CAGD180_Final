@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
     public TMP_Text highScore;
 
     public int level=0;
-    private int playerHighScore;
     public static int currentHighScore;
     public bool levelInProgress = false;
     // Start is called before the first frame update
@@ -40,20 +39,21 @@ public class UIManager : MonoBehaviour
         currentLevel.text = "Level: " + level;
         highScore.text = "High Score: " + currentHighScore;
 
+        if (playerController.score > currentHighScore)
+        {
+            currentHighScore = playerController.score;
+        }
         if (playerController.lives == 0)
         {
-            playerController.score = playerHighScore;
+           
             SwitchScene("GameOver");
         }
         if (level == 5 && levelInProgress == false && playerController.lives >= 1)
         {
-            playerController.score = playerHighScore;
+            
             SwitchScene("GameOver");
         }
-        if (playerHighScore > currentHighScore)
-        {
-            playerHighScore = currentHighScore;
-        }
+        
     }
 
     private IEnumerator LevelBegin()
