@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
     public TMP_Text livesText;
     public TMP_Text currentLevel;
     public TMP_Text highScore;
+    public GameObject powerUp;
+    public GameObject powerUpSpawn;
+    public GameObject enemySpawn;
 
     public int level=0;
     public static int currentHighScore;
@@ -53,6 +56,10 @@ public class UIManager : MonoBehaviour
             
             SwitchScene("GameOver");
         }
+        if (level == 3 && levelInProgress == false)
+        {
+            Instantiate(powerUp, powerUpSpawn.transform.position, powerUpSpawn.transform.rotation);
+        }
         
     }
 
@@ -60,7 +67,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("the level has begun");
        
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(30f);
         level++;
         levelInProgress = false;
         Debug.Log("the level has ended");
