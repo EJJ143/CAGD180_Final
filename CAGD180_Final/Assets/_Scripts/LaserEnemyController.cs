@@ -43,7 +43,7 @@ public class LaserEnemyController : MonoBehaviour
             if (transform.position.x >= -dist)
             {
                 temp = Vector3.left;
-                SetRandomDirectionSwitch();
+                //SetRandomDirectionSwitch();
                 goingRight = false;
             }
         }
@@ -52,16 +52,16 @@ public class LaserEnemyController : MonoBehaviour
             if (transform.position.x <= dist)
             {
                 temp = Vector3.right;
-                SetRandomDirectionSwitch();
+                //SetRandomDirectionSwitch();
                 goingRight = true;
             }
         }
         transform.position += temp * Time.deltaTime * speed;
     }
-    private void SetRandomDirectionSwitch()
-    {
-        dist = Random.Range(distMin, distMax);
-    }
+    //private void SetRandomDirectionSwitch()
+    //{
+    //    dist = Random.Range(distMin, distMax);
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Laser")

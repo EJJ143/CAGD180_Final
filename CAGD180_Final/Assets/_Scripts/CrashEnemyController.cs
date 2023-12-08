@@ -6,103 +6,95 @@ public class CrashEnemyController : MonoBehaviour
 {
     private bool waiting = false;
     private bool attacking = false;
-    private bool goingRight;
+    private bool goingRight = false;
     public float speed;
     private int count;
     private int bounceTimes;
     public PlayerController playerController;
-    public GameObject rightPoint;
-    public GameObject leftPoint;
-    
-    public Vector3 rightPos;
-    private Vector3 leftPos;
-    
+    private float dist;
+    private float distMin = -8;
+    private float distMax = 8;
+    private Vector3 temp;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        rightPos = rightPoint.transform.position;
-        leftPos = leftPoint.transform.position;
+
         
         StartCoroutine(Wait());
     }
 
     // Update is called once per frame
     void Update()
-    {      
-        Attack();
-        if (attacking == false && bounceTimes <= 4)
-        {
-            OnScreen();
-        }
-        if (bounceTimes >= 4)
-        {
-            transform.position += -transform.right * speed * Time.deltaTime;
-            if (transform.position.x < -8)
-            {
-                Destroy(gameObject);
-            }
-        }
+    {
+        Move();
+        //Attack();
+        //if (attacking == false && bounceTimes <= 4)
+        //{
+        //    
+        //}
+        //if (bounceTimes >= 4)
+        //{
+        //   transform.position += -transform.right * speed * Time.deltaTime;
+        //    if (transform.position.x < -8)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 
-    private void OnScreen()
+    private void Move()
     {
-        if (transform.position.x > 5)
+        if (goingRight)
         {
-            transform.position += -transform.right * speed * Time.deltaTime;
-           
+            transform.position += Vector3.right * speed * Time.deltaTime;
+            if (transform.position.x >= distMax)
+            {
+                goingRight = false;
+            }
         }
         else
         {
-            if (transform.position.x >= 5)
+            transform.position += Vector3.left * speed * Time.deltaTime;
+            if(transform.position.x <= distMin)
             {
-                goingRight = false;
-                bounceTimes++;
-            }
-
-            if (transform.position.x <= -5)
-            {
-                goingRight = true;
-                bounceTimes++;
-            }
-            if (goingRight == true)
-            {
-                transform.position += transform.right * speed * Time.deltaTime;
-            }
-            else
-            {
-                transform.position += -transform.right * speed * Time.deltaTime;
+                goingRight=true;
             }
         }
-       
+
+
     }
 
-    private void Attack()
-    {
-        if (waiting == false)
-        {
-            attacking = true;
-            transform.position += -transform.up * speed * Time.deltaTime;
-            if (transform.position.y <= -5)
-            {
-                transform.Rotate(0f, 0f, 180f);
+    /* private void Attack()
+     {
+         if (waiting == false)
+         {
 
-            }
-            if (transform.position.y >= 4.25f)
-            {
-                transform.Rotate(0f, 0f, 180f);
-                count++;
-                attacking = false;
-            }
-            if (count == 1)
-            {
-                StartCoroutine(Wait());
-            }
-        }
-    }
+             while (transform.position.y >= -5)
+             {
+                 transform.position += Vector3.down * speed * Time.deltaTime;
+             }
+
+             if (transform.position.y >= 4.25f)
+             {
+                 count++;
+                 attacking = false;
+             }
+             if (count == 1)
+             {
+                 StartCoroutine(Wait());
+                 waiting = true;
+             }
+        
+
+     */
+
     private IEnumerator Wait()
     {
         Debug.Log("wait started");
-        waiting = true;
+
         yield return new WaitForSeconds(5f);
         waiting = false;
         Debug.Log("wait ended");
@@ -111,7 +103,7 @@ public class CrashEnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Laser")
+        if (other.gameObject.tag == "Laser")
         {
             Destroy(gameObject);
             Destroy(other.gameObject);

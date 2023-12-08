@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
             StartCoroutine(LevelBegin());
             levelInProgress = true;
         }
-       
+        if (level == 1 && levelInProgress == true) 
 
         scoreText.text = "Score: " + playerController.score;
         livesText.text = "Lives: " + playerController.lives;
