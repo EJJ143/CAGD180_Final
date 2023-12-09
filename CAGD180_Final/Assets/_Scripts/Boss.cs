@@ -11,6 +11,20 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public int lives = 20;
+    private bool waiting = false;
+    private bool goingDown;
+    private bool goingRight = false;
+    public float speed;
+    private int count;
+    private int bounceTimes;
+
+    private float dist;
+    private float distMin = -8;
+    private float distMax = 8;
+    private Vector3 temp;
+
+    public GameObject bossPrefab;
+    
 
 
     // Start is called before the first frame update
