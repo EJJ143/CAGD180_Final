@@ -15,7 +15,7 @@ public class CrashEnemyController : MonoBehaviour
     public float speed;
     private int count;
     private int bounceTimes;
-    public PlayerController playerController;
+    
     private float dist;
     private float distMin = -8;
     private float distMax = 8;
@@ -70,7 +70,7 @@ public class CrashEnemyController : MonoBehaviour
             }
             else
             {
-                if (transform.position.y >= 3.5)
+                if (transform.position.y >= 3)
                 {
                     waiting = true;
                     StartCoroutine(Wait());
@@ -105,7 +105,7 @@ public class CrashEnemyController : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(other.gameObject);
-            playerController.score += 5;
+            GetComponent<PlayerController>().score += 5;
         }
     }
 }
