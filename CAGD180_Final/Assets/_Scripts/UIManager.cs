@@ -15,15 +15,15 @@ public class UIManager : MonoBehaviour
     public TMP_Text highScore;
     public GameObject powerUp;
     public GameObject powerUpSpawn;
-    public GameObject enemySpawn;
+    
 
-    public int level=0;
+    public int level;
     public static int currentHighScore;
     public bool levelInProgress = false;
     // Start is called before the first frame update
     void Start()
     {
-      
+        level = 1;
     }
 
     // Update is called once per frame
