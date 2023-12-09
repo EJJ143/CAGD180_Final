@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 /*
  * Author: [Suazo,Angel & Johnson,Ethan]
  * Last Updated: [12/08/2023]
@@ -20,7 +21,16 @@ public class UIManager : MonoBehaviour
     public TMP_Text highScore;
     public GameObject powerUp;
     public GameObject powerUpSpawn;
-    public GameObject enemySpawn;
+    public GameObject laserEnemySpawn;
+    public GameObject laserEnemy;
+    public GameObject crashEnemySpawn;
+    public GameObject crashEnemy;
+    public GameObject duplicatorEnemySpawn;
+    public GameObject duplicatorEnemy;
+
+    private int amount;
+
+    private bool waiting;
 
     public int level=0;
     public static int currentHighScore;
@@ -28,7 +38,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+        level = 1;
     }
 
     // Update is called once per frame
@@ -65,22 +75,64 @@ public class UIManager : MonoBehaviour
         {
             Instantiate(powerUp, powerUpSpawn.transform.position, powerUpSpawn.transform.rotation);
         }
+        SpawnEnemies();
         
     }
 
     private IEnumerator LevelBegin()
     {
         Debug.Log("the level has begun");
-       
+        
         yield return new WaitForSeconds(30f);
         level++;
         levelInProgress = false;
         Debug.Log("the level has ended");
-
+        amount = 0;
     }
 
     private void SwitchScene(string sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+    }
+    private void SpawnEnemies()
+    {
+        if (level <= 1)
+        {
+            if (amount < 2)
+            {
+                if (waiting == false)
+                {
+                    Instantiate(laserEnemy, laserEnemySpawn.transform.position, laserEnemySpawn.transform.rotation);
+                    Instantiate(crashEnemy, crashEnemySpawn.transform.position, crashEnemySpawn.transform.rotation);
+                    amount++;
+                    waiting = true;
+                    StartCoroutine(Wait());
+                    
+                }
+            }
+        }
+        if (level == 2)
+        {
+
+            if (amount < 2)
+            {
+                if (waiting == false)
+                {
+                    Instantiate(laserEnemy, laserEnemySpawn.transform.position, laserEnemySpawn.transform.rotation);
+                    Instantiate(crashEnemy, crashEnemySpawn.transform.position, crashEnemySpawn.transform.rotation);
+                    amount++;
+                    waiting = true;
+                    StartCoroutine(Wait());
+                    
+                }
+            }
+        }
+    }
+    private IEnumerator Wait()
+    {
+        
+        yield return new WaitForSeconds(1);
+        
+        waiting = false;
     }
 }

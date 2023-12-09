@@ -157,8 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   goingRight: 1
-  playerController: {fileID: 0}
   laserPrefab: {fileID: 149319119076714090, guid: a1e4d13e99316d44da594e9d3f799ac7, type: 3}
+  score: 10
   laserSpawnRate: 2
   laserDelay: 2
 --- !u!54 &957286961067940220

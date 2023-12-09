@@ -17,11 +17,11 @@ public class LaserEnemyController : MonoBehaviour
     private Vector3 temp;
 
     public bool goingRight = true;
-    
-    public GameObject laserPrefab;
-    
 
-    private int score;
+    public GameObject laserPrefab;
+
+
+    public int score;
 
     public float laserSpawnRate = 2f;
     public float laserDelay = 2f;
@@ -30,7 +30,7 @@ public class LaserEnemyController : MonoBehaviour
     void Start()
     {
         InvokeRepeating("SpawnLaser", 1, laserSpawnRate);
-        
+
     }
 
     // Update is called once per frame
@@ -73,9 +73,10 @@ public class LaserEnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Laser")
         {
+            score += 10;
             Destroy(gameObject);
             Destroy(other.gameObject);
-            score += 10;
+            
         }
     }
 

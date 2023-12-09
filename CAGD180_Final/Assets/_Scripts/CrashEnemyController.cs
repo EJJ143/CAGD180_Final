@@ -14,12 +14,14 @@ public class CrashEnemyController : MonoBehaviour
     private bool goingRight = false;
     public float speed;
     private int count;
-    private int bounceTimes;
-    
-    private float dist;
+
+
+
     private float distMin = -8;
     private float distMax = 8;
-    private Vector3 temp;
+
+
+    public int score;
 
 
 
@@ -27,7 +29,7 @@ public class CrashEnemyController : MonoBehaviour
     void Start()
     {
 
-        
+
         StartCoroutine(Wait());
     }
 
@@ -35,7 +37,7 @@ public class CrashEnemyController : MonoBehaviour
     void Update()
     {
         Attack();
-        
+
     }
 
     private void Move()
@@ -51,9 +53,9 @@ public class CrashEnemyController : MonoBehaviour
         else
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
-            if(transform.position.x <= distMin)
+            if (transform.position.x <= distMin)
             {
-                goingRight=true;
+                goingRight = true;
             }
         }
 
@@ -70,7 +72,7 @@ public class CrashEnemyController : MonoBehaviour
             }
             else
             {
-                if (transform.position.y >= 3)
+                if (transform.position.y >= 2)
                 {
                     waiting = true;
                     StartCoroutine(Wait());
@@ -81,13 +83,13 @@ public class CrashEnemyController : MonoBehaviour
             if (transform.position.y <= -4)
             {
                 goingDown = false;
-            }         
+            }
         }
         else
         {
             Move();
         }
-    } 
+    }
 
     private IEnumerator Wait()
     {
@@ -103,9 +105,14 @@ public class CrashEnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Laser")
         {
-            Destroy(gameObject);
-            Destroy(other.gameObject);
-            GetComponent<PlayerController>().score += 5;
+            score += 5;
+            if (score == 5)
+            {
+                //Destroy(gameObject);
+                //Destroy(other.gameObject);
+            }
         }
     }
+
+
 }

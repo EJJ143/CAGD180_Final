@@ -155,10 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  playerController: {fileID: 0}
-  rightPoint: {fileID: 0}
-  leftPoint: {fileID: 0}
-  crashEnemy: {fileID: 0}
+  score: 5
 --- !u!54 &1389995763172707678
 Rigidbody:
   m_ObjectHideFlags: 0
