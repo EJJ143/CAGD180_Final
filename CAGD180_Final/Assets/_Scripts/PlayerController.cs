@@ -4,6 +4,11 @@ using System.Threading;
 using UnityEditor;
 using UnityEngine;
 
+/*
+ * Author: [Suazo,Angel & Johnson,Ethan]
+ * Last Updated: [12/08/2023]
+ * [This script handles the player movement]
+ */
 public class PlayerController : MonoBehaviour
 {
     public float speed;

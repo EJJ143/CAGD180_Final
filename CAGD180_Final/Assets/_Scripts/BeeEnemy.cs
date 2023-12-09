@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Author: [Suazo,Angel & Johnson,Ethan]
+ * Last Updated: [12/08/2023]
+ * [This script handles the bee enemy movement]
+ */
 public class BeeEnemy : MonoBehaviour
 {
     public float speed;

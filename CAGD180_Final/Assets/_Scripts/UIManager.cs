@@ -5,6 +5,11 @@ using TMPro;
 using UnityEngine.UI;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine.SceneManagement;
+/*
+ * Author: [Suazo,Angel & Johnson,Ethan]
+ * Last Updated: [12/08/2023]
+ * [This script handles UI]
+ */
 
 public class UIManager : MonoBehaviour
 {

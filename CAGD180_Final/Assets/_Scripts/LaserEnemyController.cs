@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+/*
+ * Author: [Suazo,Angel & Johnson,Ethan]
+ * Last Updated: [12/08/2023]
+ * [This script handles the laser enemy movement]
+ */
 public class LaserEnemyController : MonoBehaviour
 {
     public float speed;

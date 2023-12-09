@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Author: [Suazo,Angel & Johnson,Ethan]
+ * Last Updated: [12/08/2023]
+ * [This script handles the crash enemy movement]
+ */
 public class CrashEnemyController : MonoBehaviour
 {
     private bool waiting = false;
