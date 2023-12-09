@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LaserController : MonoBehaviour
 {
+
+    
     public float speed;
     // Start is called before the first frame update
     void Start()
@@ -30,4 +32,5 @@ public class LaserController : MonoBehaviour
             transform.position += Vector3.up * speed * Time.deltaTime;
         }
     }
+    
 }

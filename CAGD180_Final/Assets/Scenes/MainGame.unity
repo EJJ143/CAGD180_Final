@@ -992,6 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1354715597}
+  laserEnemyController: {fileID: 6370654911413642740, guid: f3bd571e8d5a98945a66e0eee08981a8, type: 3}
   scoreText: {fileID: 1109659247}
   livesText: {fileID: 239542934}
   currentLevel: {fileID: 64400157}
@@ -1002,8 +1003,8 @@ MonoBehaviour:
   laserEnemy: {fileID: 5950927875475050164, guid: f3bd571e8d5a98945a66e0eee08981a8, type: 3}
   crashEnemySpawn: {fileID: 660164781}
   crashEnemy: {fileID: 4269529205503032175, guid: 0e6b3c2c9664d444984c2e063ff103e3, type: 3}
-  duplicatorEnemySpawn: {fileID: 411895574}
-  duplicatorEnemy: {fileID: 3140848506662698227, guid: 9a415f2a4632c2e48984c3ff7d754cb4, type: 3}
+  bossEnemySpawn: {fileID: 1114321565}
+  bossEnemy: {fileID: 976979623238211101, guid: 5752a169f0b52c841b4610d826419ed9, type: 3}
   level: 0
   levelInProgress: 0
 --- !u!1 &616403217

@@ -30,7 +30,7 @@ public class LaserEnemyController : MonoBehaviour
     void Start()
     {
         InvokeRepeating("SpawnLaser", 1, laserSpawnRate);
-
+        
     }
 
     // Update is called once per frame

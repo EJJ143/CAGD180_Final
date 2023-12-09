@@ -14,6 +14,7 @@ public class CrashEnemyController : MonoBehaviour
     private bool goingRight = false;
     public float speed;
     private int count;
+    
 
 
 
@@ -22,14 +23,14 @@ public class CrashEnemyController : MonoBehaviour
 
 
     public int score;
-
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-
-
+        
+        score = GetComponent<PlayerController>().score;
         StartCoroutine(Wait());
     }
 
@@ -105,12 +106,12 @@ public class CrashEnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Laser")
         {
-            score += 5;
-            if (score == 5)
-            {
-                //Destroy(gameObject);
-                //Destroy(other.gameObject);
-            }
+            
+
+            
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+
         }
     }
 

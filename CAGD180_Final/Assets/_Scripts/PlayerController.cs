@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Shoot();
-        //score += laserEnemyController.score;
+        
         
     }
 
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
     private void Respawn()
     {
         transform.position = spawnPosition;
-        lives -= 1;
+        lives --;
         StartCoroutine(Invincibility());
     }
     private IEnumerator Invincibility()

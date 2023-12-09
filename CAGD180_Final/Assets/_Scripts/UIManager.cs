@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.SocialPlatforms.Impl;
 /*
  * Author: [Suazo,Angel & Johnson,Ethan]
  * Last Updated: [12/08/2023]
@@ -15,6 +16,7 @@ using Unity.VisualScripting;
 public class UIManager : MonoBehaviour
 {
     public PlayerController playerController;
+    public LaserEnemyController laserEnemyController;
     public TMP_Text scoreText;
     public TMP_Text livesText;
     public TMP_Text currentLevel;
@@ -25,8 +27,8 @@ public class UIManager : MonoBehaviour
     public GameObject laserEnemy;
     public GameObject crashEnemySpawn;
     public GameObject crashEnemy;
-    public GameObject duplicatorEnemySpawn;
-    public GameObject duplicatorEnemy;
+    public GameObject bossEnemySpawn;
+    public GameObject bossEnemy;
 
     private int amount;
 
@@ -39,6 +41,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         level = 1;
+        
     }
 
     // Update is called once per frame
@@ -52,10 +55,10 @@ public class UIManager : MonoBehaviour
         }
         if (level == 1 && levelInProgress == true) 
 
-        scoreText.text = "Score: " + playerController.score;
+        //scoreText.text = "Score: " + playerController.score;
         livesText.text = "Lives: " + playerController.lives;
         currentLevel.text = "Level: " + level;
-        highScore.text = "High Score: " + currentHighScore;
+        //highScore.text = "High Score: " + currentHighScore;
 
         if (playerController.score > currentHighScore)
         {
@@ -66,7 +69,7 @@ public class UIManager : MonoBehaviour
            
             SwitchScene("GameOver");
         }
-        if (level == 5 && levelInProgress == false && playerController.lives >= 1)
+        if (level == 5 && playerController.lives >= 1)
         {
             
             SwitchScene("GameOver");
@@ -83,7 +86,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("the level has begun");
         
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(15f);
         level++;
         levelInProgress = false;
         Debug.Log("the level has ended");
@@ -98,11 +101,11 @@ public class UIManager : MonoBehaviour
     {
         if (level <= 1)
         {
-            if (amount < 2)
+            if (amount < 1)
             {
                 if (waiting == false)
                 {
-                    Instantiate(laserEnemy, laserEnemySpawn.transform.position, laserEnemySpawn.transform.rotation);
+                    Instantiate(laserEnemy, laserEnemySpawn.transform.position, laserEnemySpawn.transform.rotation);                 
                     Instantiate(crashEnemy, crashEnemySpawn.transform.position, crashEnemySpawn.transform.rotation);
                     amount++;
                     waiting = true;
@@ -124,6 +127,53 @@ public class UIManager : MonoBehaviour
                     waiting = true;
                     StartCoroutine(Wait());
                     
+                }
+            }
+        }
+        if (level == 3)
+        {
+
+            if (amount < 3)
+            {
+                if (waiting == false)
+                {
+                    Instantiate(laserEnemy, laserEnemySpawn.transform.position, laserEnemySpawn.transform.rotation);
+                    Instantiate(crashEnemy, crashEnemySpawn.transform.position, crashEnemySpawn.transform.rotation);
+                    amount++;
+                    waiting = true;
+                    StartCoroutine(Wait());
+
+                }
+            }
+        }
+        if (level == 4)
+        {
+
+            if (amount < 4)
+            {
+                if (waiting == false)
+                {
+                    Instantiate(laserEnemy, laserEnemySpawn.transform.position, laserEnemySpawn.transform.rotation);
+                    Instantiate(crashEnemy, crashEnemySpawn.transform.position, crashEnemySpawn.transform.rotation);
+                    amount++;
+                    waiting = true;
+                    StartCoroutine(Wait());
+
+                }
+            }
+        }
+        if (level == 5)
+        {
+
+            if (amount < 1)
+            {
+                if (waiting == false)
+                {
+                    Instantiate(bossEnemy, bossEnemySpawn.transform.position, laserEnemySpawn.transform.rotation);              
+                    amount++;
+                    waiting = true;
+                    StartCoroutine(Wait());
+
                 }
             }
         }

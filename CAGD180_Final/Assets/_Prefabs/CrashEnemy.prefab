@@ -155,7 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  score: 5
+  playerController: {fileID: 2283698028787943121, guid: 43b71896ce869984e95c409392295b34, type: 3}
+  score: 0
 --- !u!54 &1389995763172707678
 Rigidbody:
   m_ObjectHideFlags: 0
