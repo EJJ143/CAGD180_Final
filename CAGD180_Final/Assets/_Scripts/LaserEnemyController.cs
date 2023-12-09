@@ -40,23 +40,22 @@ public class LaserEnemyController : MonoBehaviour
     {
         if (goingRight)
         {
-            if (transform.position.x >= -dist)
+            transform.position += Vector3.right * speed * Time.deltaTime;
+            if (transform.position.x >= distMax)
             {
-                temp = Vector3.left;
-                //SetRandomDirectionSwitch();
                 goingRight = false;
             }
         }
         else
         {
-            if (transform.position.x <= dist)
+            transform.position += Vector3.left * speed * Time.deltaTime;
+            if (transform.position.x <= distMin)
             {
-                temp = Vector3.right;
-                //SetRandomDirectionSwitch();
                 goingRight = true;
             }
         }
-        transform.position += temp * Time.deltaTime * speed;
+
+
     }
     //private void SetRandomDirectionSwitch()
     //{

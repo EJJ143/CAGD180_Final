@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrashEnemyController : MonoBehaviour
 {
     private bool waiting = false;
-    private bool attacking = false;
+    private bool goingDown;
     private bool goingRight = false;
     public float speed;
     private int count;
@@ -29,20 +29,8 @@ public class CrashEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        //Attack();
-        //if (attacking == false && bounceTimes <= 4)
-        //{
-        //    
-        //}
-        //if (bounceTimes >= 4)
-        //{
-        //   transform.position += -transform.right * speed * Time.deltaTime;
-        //    if (transform.position.x < -8)
-        //    {
-        //        Destroy(gameObject);
-        //    }
-        //}
+        Attack();
+        
     }
 
     private void Move()
@@ -67,29 +55,34 @@ public class CrashEnemyController : MonoBehaviour
 
     }
 
-    /* private void Attack()
-     {
-         if (waiting == false)
-         {
+    private void Attack()
+    {
+        if (waiting == false)
+        {
+            if (goingDown == true)
+            {
+                transform.position += Vector3.down * speed * Time.deltaTime;
+            }
+            else
+            {
+                if (transform.position.y >= 3.5)
+                {
+                    waiting = true;
+                    StartCoroutine(Wait());
+                }
+                transform.position += Vector3.up * speed * Time.deltaTime;
 
-             while (transform.position.y >= -5)
-             {
-                 transform.position += Vector3.down * speed * Time.deltaTime;
-             }
-
-             if (transform.position.y >= 4.25f)
-             {
-                 count++;
-                 attacking = false;
-             }
-             if (count == 1)
-             {
-                 StartCoroutine(Wait());
-                 waiting = true;
-             }
-        
-
-     */
+            }
+            if (transform.position.y <= -4)
+            {
+                goingDown = false;
+            }         
+        }
+        else
+        {
+            Move();
+        }
+    } 
 
     private IEnumerator Wait()
     {
@@ -97,8 +90,8 @@ public class CrashEnemyController : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
         waiting = false;
+        goingDown = true;
         Debug.Log("wait ended");
-        count = 0;
     }
 
     private void OnTriggerEnter(Collider other)
